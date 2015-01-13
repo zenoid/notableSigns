@@ -3,6 +3,7 @@ js/.DS_Store
 build/.DS_Store
 build/style/.DS_Store
 build/data/.DS_Store
+crawler/.DS_Store
 crawler/output/.DS_Store
 js/libs/.DS_Store
 node_modules
