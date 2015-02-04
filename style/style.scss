@@ -172,19 +172,22 @@ $color_fb: #3B5998;
 $color_twitter: #55ACEE;
 
 .gitd-widgets {
-  position: fixed;
-  bottom: 4px;
-  right: 4px;
   font-size: 0;
-  text-align: left;
+  text-align: right;
+  margin-top: 20px;
 }
 
 .gitd-widget-item {
   display: inline-block;
-  margin-left: 5px;
   border: none;
+  text-align: left;
+  background-color: lighten( $color-bg, 10% );
   cursor: pointer;
   position: relative;
+
+  & + .gitd-widget-item {
+    margin-left: 5px;
+  }
 }
 
 .gitd-widget-icon {
@@ -293,6 +296,15 @@ $color_twitter: #55ACEE;
 
   .gitd-widget-panel {
     background-color: $color_widget_data;
+
+    p {
+      color: #FFF;
+      font-weight: $font-weight-bold;
+    }
+
+    ul {
+      text-align: left;
+    }
   }
 
   &:hover {
