@@ -1,7 +1,11 @@
 
 
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: ( $max-width + 20px ) ) {
+
+body {
+  padding: 0 10px;
+}
 
 .gitd-widgets {
   position: static;

@@ -4,9 +4,11 @@
 /*                      COLORS
 ------------------------------------------------------------------------- */
 
-$color-selected: #F33;
-$color-low: #DDD;
-$color-hi: #000;
+
+$color-selected: #FCD842;
+$color-bg: #204A5C;
+$color-text: lighten( $color-bg, 25% );
+$color-border: lighten( $color-bg, 10% );
 
 
 

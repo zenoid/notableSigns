@@ -8,13 +8,16 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
 
     var data, signItems, typeItems, selectedSign, selectedType,
 
-      colorLow = '#DDDDDD',
-      colorHi = '#000000',
-      colorSelected = '#FF3333',
+      colorSelected = '#FCD842',
 
-      signScaleMin = 0.4,
-      signScaleMax = 1.65,
-      typeScaleMin = 0.8,
+      signColorHi = '#3A87A8',
+      signColorLow = '#204A5C',
+      typeColorHi = '#FFFFFF',
+      typeColorLow = '#2D6882',
+
+      signScaleMin = 0.3,
+      signScaleMax = 1.7,
+      typeScaleMin = 0.7,
       typeScaleMax = 2,
 
       signsList = [ 'Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces' ],
@@ -56,13 +59,13 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
 
       signItems = d3.selectAll( '#signs li' )
         .data( signsList )
-        .append( 'div' )
         .each( function( d, i ) {
-          d3.select( this )
-            .attr( 'class', 'sign-' + d.toLowerCase() )
-            .on( 'click', function( e ){
-              selectSign( i );
-            });
+          var _this = d3.select( this );
+          _this.append( 'div' )
+            .attr( 'class', 'sign-' + d.toLowerCase() );
+          _this.on( 'click', function( e ){
+            selectSign( i );
+          });
         });
 
       d3.shuffle( typesList );
@@ -116,14 +119,14 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
       selectedSign = null;
       selectedType = null;
 
-      d3.selectAll( signItems[ 0 ] )
+      d3.selectAll( signItems[ 0 ] ).select( 'div ')
         .each( function( d, i ) {
-          setItemValue( d3.select( this ), 1, colorLow, true );
+          setItemValue( d3.select( this ), 1, signColorLow, true );
         });
 
       d3.selectAll( typeItems[ 0 ] )
         .each( function( d, i ) {
-          setItemValue( d3.select( this ), 1, colorHi );
+          setItemValue( d3.select( this ), 1, typeColorHi );
         });
 
     }
@@ -149,12 +152,13 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
       max = d3.max( values );
 
       var sizeScale = d3.scale.linear().domain( [ 0, max ] ).range( [ typeScaleMin, typeScaleMax ] ),
-        colorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, max ] ).range( [ colorLow, colorHi ] );
+        signColorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, max ] ).range( [ signColorLow, signColorHi ] ),
+        typeColorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, max ] ).range( [ typeColorLow, typeColorHi ] );
 
-      d3.selectAll( signItems[ 0 ] )
+      d3.selectAll( signItems[ 0 ] ).select( 'div ')
         .each( function( d, i ) {
           if ( i !== s ) {
-            setItemValue( d3.select( this ), signScaleMin, colorScale( 0 ), true );
+            setItemValue( d3.select( this ), signScaleMin, signColorScale( 0 ), true );
           } else {
             setItemSelected( d3.select( this ), true );
           }
@@ -162,7 +166,7 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
 
       d3.selectAll( typeItems[ 0 ] )
         .each( function( d, i ) {
-          setItemValue( d3.select( this ), sizeScale( data[ d.sourceId ][ s ] ), colorScale( data[ d.sourceId ][ s ] ) );
+          setItemValue( d3.select( this ), sizeScale( data[ d.sourceId ][ s ] ), typeColorScale( data[ d.sourceId ][ s ] ) );
         });
 
     }
@@ -182,20 +186,21 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
       selectedSign = null;
 
       var sizeScale = d3.scale.linear().domain( [ 0, 1 ] ).range( [ signScaleMin, signScaleMax ] ),
-        colorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, 1 ] ).range( [ colorLow, colorHi ] );
+        signColorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, 1 ] ).range( [ signColorLow, signColorHi ] ),
+        typeColorScale = d3.scale.pow().exponent( 2 ).domain( [ 0, 1 ] ).range( [ typeColorLow, typeColorHi ] );
 
       d3.selectAll( typeItems[ 0 ] )
         .each( function( d ) {
           if ( d.id !== tData.id ) {
-            setItemValue( d3.select( this ), typeScaleMin, colorScale( 0 ) );
+            setItemValue( d3.select( this ), typeScaleMin, typeColorScale( 0 ) );
           } else {
             setItemSelected( d3.select( this ) );
           }
         });
 
-      d3.selectAll( signItems[ 0 ] )
+      d3.selectAll( signItems[ 0 ] ).select( 'div ')
         .each( function( d, i ) {
-          setItemValue( d3.select( this ), sizeScale( data[ tData.sourceId ][ i ] ), colorScale( data[ tData.sourceId ][ i ] ), true );
+          setItemValue( d3.select( this ), sizeScale( data[ tData.sourceId ][ i ] ), signColorScale( data[ tData.sourceId ][ i ] ), true );
         });
 
     }

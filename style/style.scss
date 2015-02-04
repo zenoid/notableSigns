@@ -21,7 +21,7 @@ body, html {
   padding: 0;
   margin: 0;
   overflow-x: hidden;
-  background-color: #FFF;
+  background-color: $color-bg;
 }
 
 
@@ -49,18 +49,17 @@ li {
 }
 
 p {
-  font-size: 0.9em;
+  font-size: 1em;
   line-height: 1.5em;
+  color: $color-text;
 }
 
 h1 {
-  font-size: 2em;
+  font-size: 2.4em;
   font-weight: $font-weight-bold;
-}
-
-h2 {
-  font-size: 1em;
-  font-weight: $font-weight;
+  line-height: 1.2em;
+  padding: 0 0 0.2em 0;
+  margin: 0;
 }
 
 
@@ -69,10 +68,12 @@ h2 {
 ------------------------------------------------------------------------- */
 
 header {
-  background-color: #333;
   margin: auto;
-  padding: 1em 0;
+  padding: 3em 0;
+  text-align: left;
   color: #FFF;
+  max-width: $max-width;
+  border-bottom: 1px solid $color-border;
 }
 
 
@@ -83,7 +84,7 @@ header {
 .typesList,
 .signsList {
   max-width: $max-width;
-  margin: 20px auto;
+  margin: 2em auto;
 }
 
 ul {
@@ -100,7 +101,7 @@ li {
 
   li {
     margin: 0.8em 2.5em;
-    color: $color-hi;
+    color: #FFF;
     font-weight: $font-weight-bold;
     cursor: pointer;
 
@@ -114,19 +115,25 @@ li {
 
   li {
     font-size: 0.8em;
-    color: #BBB;
+    color: $color-text;
+    cursor: pointer;
 
     div {
       width: 50px;
       height: 50px;
-      margin: 20px 15px;
+      margin: 25px 15px;
       cursor: pointer;
       @include borderRadius( 100% );
       background-repeat: no-repeat;
       background-position: 50% 50%;
-      background-color: $color-low;
+      background-color: $color-bg;
+    }
 
-      &:hover {
+
+    &:hover {
+      color: $color-selected;
+
+      div {
         background-color: $color-selected !important;
       }
     }
@@ -140,13 +147,14 @@ li {
 
 footer {
   max-width: $max-width;
-  padding: 1em 0;
-  margin: 2em auto;
-  color: #999;
-  border-top: 1px solid #CCC;
+  padding: 2em 0;
+  margin: 2em auto 0 auto;
+  border-top: 1px solid $color-border;
+  text-align: left;
+  color: $color-text;
 
   p:first-child {
-    color: #666;
+    opacity: 1;
   }
 
   p + p {
