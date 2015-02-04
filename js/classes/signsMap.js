@@ -94,10 +94,12 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
       if ( isSign ) {
         item.transition().duration( 500 )
           .style( 'transform', 'scale(' + size + ')' )
+          .style( '-webkit-transform', 'scale(' + size + ')' )
           .style( 'background-color', color );
       } else {
         item.transition().duration( 500 )
           .style( 'transform', 'scale(' + size + ')' )
+          .style( '-webkit-transform', 'scale(' + size + ')' )
           .style( 'color', color );
       }
     }
@@ -106,10 +108,12 @@ window.gitdNotableSigns = window.gitdNotableSigns || {};
       if ( isSign ) {
         item.transition().duration( 500 )
           .style( 'transform', 'scale(' + signScaleMax + ')' )
+          .style( '-webkit-transform', 'scale(' + signScaleMax + ')' )
           .style( 'background-color', colorSelected );
       } else {
         item.transition().duration( 500 )
           .style( 'transform', 'scale(' + typeScaleMax + ')' )
+          .style( '-webkit-transform', 'scale(' + typeScaleMax + ')' )
           .style( 'color', colorSelected );
       }
     }
